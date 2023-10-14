@@ -1,0 +1,54 @@
+dicoding-labs-microservices-item-app-1  | 
+dicoding-labs-microservices-item-app-1  | > docker-software-delivery@1.0.0 start /app
+dicoding-labs-microservices-item-app-1  | > node ./bin/www
+dicoding-labs-microservices-item-app-1  | 
+dicoding-labs-microservices-item-app-1  | NODE_ENV: production
+dicoding-labs-microservices-item-app-1  | Connected to database
+dicoding-labs-microservices-item-app-1  | [0mGET / [32m200 [0m747.903 ms - 785[0m
+dicoding-labs-microservices-item-app-1  | [0mGET /javascripts/dist/dist.min.js [32m200 [0m6.746 ms - 186999[0m
+dicoding-labs-microservices-item-app-1  | [0mGET /stylesheets/style.css [32m200 [0m76.052 ms - 519[0m
+dicoding-labs-microservices-item-app-1  | [0mGET /favicon.ico [33m404 [0m27.645 ms - 270[0m
+dicoding-labs-microservices-item-app-1  | [0mGET /api [32m200 [0m25.437 ms - 2[0m
+dicoding-labs-microservices-item-app-1  | [0mGET / [32m200 [0m1.227 ms - 785[0m
+dicoding-labs-microservices-item-app-1  | [0mPOST /api [32m201 [0m41.922 ms - 56[0m
+dicoding-labs-microservices-item-app-1  | [0mPOST /api [32m201 [0m4.132 ms - 56[0m
+dicoding-labs-microservices-item-app-1  | [0mGET / [36m304 [0m1.903 ms - -[0m
+dicoding-labs-microservices-item-app-1  | [0mGET /stylesheets/style.css [36m304 [0m4.851 ms - -[0m
+dicoding-labs-microservices-item-app-1  | [0mGET /javascripts/dist/dist.min.js [36m304 [0m0.840 ms - -[0m
+dicoding-labs-microservices-item-app-1  | [0mGET /api [32m200 [0m8.312 ms - 115[0m
+dicoding-labs-microservices-item-app-1  | [0mGET / [32m200 [0m1.062 ms - 785[0m
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=41cadf7813cb
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] db version v3.6.23
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] git version: d352e6a4764659e0d0350ce77279de3c1f243e5c
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2g  1 Mar 2016
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] modules: none
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] build environment:
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten]     distmod: ubuntu1604
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten]     distarch: x86_64
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.482+0000 I CONTROL  [initandlisten] options: { net: { bindIpAll: true } }
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.483+0000 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.483+0000 I STORAGE  [initandlisten] 
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.483+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.483+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:11.483+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1448M,cache_overflow=(file_max=0M),session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),compatibility=(release="3.0",require_max="3.0"),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:12.690+0000 I STORAGE  [initandlisten] WiredTiger message [1696839192:690593][1:0x7f9441592a40], txn-recover: Main recovery loop: starting at 5/6272
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:12.830+0000 I STORAGE  [initandlisten] WiredTiger message [1696839192:830116][1:0x7f9441592a40], txn-recover: Recovering log 5 through 6
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:12.914+0000 I STORAGE  [initandlisten] WiredTiger message [1696839192:914462][1:0x7f9441592a40], txn-recover: Recovering log 6 through 6
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:12.981+0000 I STORAGE  [initandlisten] WiredTiger message [1696839192:981511][1:0x7f9441592a40], txn-recover: Set global recovery timestamp: 0
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.016+0000 I CONTROL  [initandlisten] 
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.016+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.016+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.016+0000 I CONTROL  [initandlisten] 
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.016+0000 I CONTROL  [initandlisten] 
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.017+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.017+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.017+0000 I CONTROL  [initandlisten] 
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.025+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.026+0000 I NETWORK  [initandlisten] listening via socket bound to 0.0.0.0
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.026+0000 I NETWORK  [initandlisten] listening via socket bound to /tmp/mongodb-27017.sock
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:13.026+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:54.725+0000 I NETWORK  [listener] connection accepted from 172.23.0.3:44968 #1 (1 connection now open)
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:13:54.740+0000 I NETWORK  [conn1] received client metadata from 172.23.0.3:44968 conn1: { driver: { name: "nodejs", version: "2.2.36" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "5.15.90.1-microsoft-standard-WSL2" }, platform: "Node.js v14.21.3, LE, mongodb-core: 2.1.20" }
+dicoding-labs-microservices-item-db-1   | 2023-10-09T08:14:40.688+0000 I STORAGE  [conn1] createCollection: accumulator.documents with generated UUID: 2d9aa70f-2371-4dd4-8cac-4b527368779f
