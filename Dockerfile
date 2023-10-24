@@ -1,5 +1,5 @@
-# menggunakan base image Node.js versi 20
-FROM node:20
+# menggunakan base image Node.js versi 21 (Alpine Linux)
+FROM node:21-alpine
 
 # menentukan working directory container pada /app
 WORKDIR /app
