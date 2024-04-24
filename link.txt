@@ -1,0 +1,8 @@
+Link packages di GitHub Container Registry:
+- order-service:
+  https://ghcr.io/yogaperdana/order-service:latest
+- shipping-service:
+  https://ghcr.io/yogaperdana/shipping-service:latest
+
+Link repository GitHub:
+https://github.com/yogaperdana/dicoding-labs-microservices

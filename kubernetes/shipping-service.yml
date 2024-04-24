@@ -1,0 +1,47 @@
+apiVersion: v1                  # versi Kubernetes API yang digunakan
+kind: Service                   # jenis sumber daya yang dibuat, yaitu Service
+metadata:                       # data informasi untuk identifikasi objek
+  name: shipping-service        # nama objek Service
+  labels:                       # label untuk identifikasi
+    app: shipping-service
+    tier: consumer
+spec:                           # spesifikasi Service yang dibuat
+  selector:                     # mengasosiasikan Pod yang memiliki label tertentu
+    app: shipping-service
+    tier: consumer
+  ports:                        # spesifikasi port yang diekspos
+  - name: http-nodejs
+    port: 3001
+---
+apiVersion: apps/v1             # versi Kubernetes API yang digunakan
+kind: Deployment                # jenis sumber daya yang dibuat, yaitu Deployment
+metadata:                       # data informasi untuk identifikasi objek
+  name: shipping-service        # nama objek Deployment
+  labels:                       # label untuk identifikasi
+    app: shipping-service
+    tier: consumer
+spec:                           # spesifikasi Deployment
+  replicas: 1                   # jumlah replika Pod
+  selector:                     # mengasosiasikan Pod yang memiliki label tertentu
+    matchLabels:
+      app: shipping-service
+      tier: consumer
+  template:                     # template untuk membuat Pod yang dikelola Deployment
+    metadata:                   # data informasi untuk identifikasi Pod
+      labels:                   # memberikan label untuk Pod
+        app: shipping-service
+        tier: consumer
+    spec:                       # spesifikasi Pod
+      containers:               # spesifikasi kontainer
+      - name: shipping-service  # nama kontainer dalam Pod
+        image: ghcr.io/yogaperdana/shipping-service:latest # image Docker yang digunakan
+        ports:                  # alokasi port-port yang digunakan oleh kontainer
+        - containerPort: 3001
+        env:                    # mendefinisikan properti variabel environment yang digunakan
+        - name: AMQP_PASSWORD   # mendapatkan password AMQP dari secret key
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq
+              key: rabbitmq-password
+        - name: AMQP_URL        # alamat URL untuk service RabbitMQ
+          value: "amqp://user:$(AMQP_PASSWORD)@rabbitmq-headless:5672/"

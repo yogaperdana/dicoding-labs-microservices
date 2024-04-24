@@ -1,0 +1,35 @@
+# Gateway: mengelola lalu lintas masuk dan keluar dari mesh
+apiVersion: networking.istio.io/v1alpha3  # versi API yang digunakan
+kind: Gateway                             # jenis sumber daya yang dibuat, yaitu gateway
+metadata:                                 # data informasi untuk identifikasi objek
+  name: order-service-gw                  # nama objek gateway
+spec:                                     # spesifikasi gateway yang dibuat
+  selector:                               # mengasosiasikan objek yang memiliki label tertentu
+    istio: ingressgateway                 # menggunakan istio ingress gateway
+  servers:                                # konfigurasi server gateway
+  - port:                                 # menggunakan port 80 dengan protokol HTTP
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:                                # traffic dapat diakses dari host manapun
+    - "*"
+---
+# VirtualService: mengonfigurasi cara mengalihkan rute permintaan ke service pada mesh 
+apiVersion: networking.istio.io/v1alpha3  # versi API yang digunakan
+kind: VirtualService                      # jenis sumber daya yang dibuat, yaitu virtual service
+metadata:                                 # data informasi untuk identifikasi objek
+  name: order-service-vs                  # nama objek virtual service
+spec:                                     # spesifikasi virtual service
+  hosts:                                  # menerima permintaan dari host manapun
+  - "*"
+  gateways:                               # merujuk pada objek gateway yang sudah dibuat di atas
+  - order-service-gw
+  http:                                   # konfigurasi HTTP
+  - match:                                # memetakan URL agar cocok dengan path '/order'
+    - uri:
+        exact: /order
+    route:                                # konfigurasi rute permintaan
+    - destination:                        # tujuan permintaan kepada 'order-service' pada port 3000
+        host: order-service
+        port:
+          number: 3000

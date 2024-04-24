@@ -1,0 +1,65 @@
+# menggunakan Docker Compose versi terbaru
+version: '3.8'
+
+# membuat services
+services:
+
+  order-svc:
+    # menggunakan image dari GitHub Container Registry
+    image: ghcr.io/yogaperdana/order-service:latest
+    # port mapping
+    ports:
+      - 3000:3000
+    # service berjalan setelah RabbitMQ diluncurkan
+    depends_on:
+      - rabbitmq-svc
+    # jaringan yang digunakan untuk container
+    networks:
+      - rabbitmq-net
+    # menerapkan restart policy agar container selalu restart ketika terhenti
+    restart: always
+    # mendefinisikan environment variables untuk URL RabbitMQ
+    environment:
+      AMQP_URL: "amqp://guest:guest@rabbitmq-local:5672/"
+
+  shipping-svc:
+    # menggunakan image dari GitHub Container Registry
+    image: ghcr.io/yogaperdana/shipping-service:latest
+    # port mapping
+    ports:
+      - 3001:3001
+    # service berjalan setelah RabbitMQ diluncurkan
+    depends_on:
+      - rabbitmq-svc
+    # jaringan yang digunakan untuk container
+    networks:
+      - rabbitmq-net
+    # menerapkan restart policy agar container selalu restart ketika terhenti
+    restart: always
+    # mendefinisikan environment variables untuk URL RabbitMQ
+    environment:
+      AMQP_URL: "amqp://guest:guest@rabbitmq-local:5672/"
+
+  rabbitmq-svc:
+    # menggunakan image RabbitMQ dari Docker Hub
+    image: rabbitmq:3.11-management
+    # nama container
+    container_name: 'rabbitmq-local'
+    # port mapping
+    ports:
+      - 5672:5672
+      - 15672:15672
+    # memetakan volume untuk container
+    volumes:
+      - ~/.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker/rabbitmq/log/:/var/log/rabbitmq/
+    # jaringan yang digunakan untuk container
+    networks:
+      - rabbitmq-net
+    # menerapkan restart policy agar container selalu restart ketika terhenti
+    restart: always
+
+# membuat jaringan dengan tipe bridge network
+networks:
+  rabbitmq-net:
+    driver: bridge
