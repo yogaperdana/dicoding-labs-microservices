@@ -1,0 +1,40 @@
+apiVersion: apps/v1         # versi Kubernetes API yang digunakan
+kind: Deployment            # jenis sumber daya yang dibuat, yaitu Deployment
+metadata:                   # data informasi untuk identifikasi objek
+  name: karsajobs-api       # nama objek Deployment
+  labels:                   # label untuk identifikasi
+    app: karsajobs-api
+    tier: backend
+spec:                       # spesifikasi Deployment
+  replicas: 1               # jumlah replika Pod
+  selector:                 # mengasosiasikan Pod yang memiliki label tertentu
+    matchLabels:
+      app: karsajobs-api
+      tier: backend
+  template:                 # template untuk membuat Pod yang dikelola Deployment
+    metadata:               # data informasi untuk identifikasi Pod
+      labels:               # memberikan label untuk Pod
+        app: karsajobs-api
+        tier: backend
+    spec:                   # spesifikasi Pod
+      containers:           # spesifikasi kontainer
+      - name: karsajobs     # nama kontainer dalam Pod
+        image: ghcr.io/yogaperdana/karsajobs:latest # image Docker yang digunakan
+        imagePullPolicy: IfNotPresent # mengatur untuk pull image hanya jika belum tersedia di lokal
+        ports:              # alokasi port-port yang digunakan oleh kontainer
+        - containerPort: 8080
+        env:                # mendefinisikan properti variabel environment yang digunakan
+        - name: APP_PORT    # APP_PORT dengan nilai 8080
+          value: "8080"
+        - name: MONGO_HOST  # MONGO_HOST dengan nilai yang diambil dari MongoDB Service
+          value: karsajobs-db
+        - name: MONGO_USER  # MONGO_USER dengan nilai yang diambil dari MongoDB Secret (MONGO_ROOT_USERNAME)
+          valueFrom:
+            secretKeyRef:
+              name: karsajobs-db-secret
+              key: MONGO_ROOT_USERNAME
+        - name: MONGO_PASS  # MONGO_PASS dengan nilai yang diambil dari MongoDB Secret (MONGO_ROOT_PASSWORD)
+          valueFrom:
+            secretKeyRef:
+              name: karsajobs-db-secret
+              key: MONGO_ROOT_PASSWORD

@@ -1,0 +1,8 @@
+Link packages di GitHub Container Registry:
+- karsajobs:
+  https://ghcr.io/yogaperdana/karsajobs:latest
+- karsajobs-ui:
+  https://ghcr.io/yogaperdana/karsajobs-ui:latest
+
+Link repository GitHub:
+https://github.com/yogaperdana/dicoding-labs-microservices

@@ -1,0 +1,53 @@
+apiVersion: apps/v1           # versi Kubernetes API yang digunakan
+kind: StatefulSet             # jenis sumber daya yang dibuat, yaitu StatefulSet
+metadata:                     # data informasi untuk identifikasi objek
+  name: karsajobs-db          # nama objek StatefulSet
+  labels:                     # label untuk identifikasi
+    app: karsajobs-db
+    tier: database
+spec:                         # spesifikasi StatefulSet yang dibuat
+  serviceName: karsajobs-db   # nama objek Service
+  replicas: 1                 # jumlah replika Pod
+  minReadySeconds: 10         # waktu minimum Pod untuk siap, yaitu 10 detik
+  selector:                   # mengasosiasikan Pod yang memiliki label tertentu
+    matchLabels:
+      app: karsajobs-db
+      tier: database
+  template:                   # template untuk membuat Pod yang dikelola StatefulSet
+    metadata:                 # data informasi untuk identifikasi Pod
+      labels:                 # memberikan label untuk Pod
+        app: karsajobs-db
+        tier: database
+    spec:                     # spesifikasi Pod
+      terminationGracePeriodSeconds: 10 # masa tenggang untuk menghentikan yaitu 10 detik
+      containers:             # spesifikasi kontainer
+      - name: mongo           # nama kontainer dalam Pod
+        image: mongo:latest   # image Docker yang digunakan
+        imagePullPolicy: IfNotPresent # mengatur untuk pull image hanya jika belum tersedia di lokal
+        ports:                # alokasi port-port yang digunakan oleh kontainer
+        - containerPort: 27017
+        env:                  # mendefinisikan properti variabel environment yang digunakan
+        - name: MONGO_INITDB_ROOT_USERNAME_FILE
+          value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
+        - name: MONGO_INITDB_ROOT_PASSWORD_FILE
+          value: /etc/mongo-credentials/MONGO_ROOT_PASSWORD
+        volumeMounts:         # mengatur volume mount dan path-nya
+        - name: mongo-persist-vol
+          mountPath: /data/db
+        - name: mongo-config-vol
+          mountPath: /config
+        - name: mongo-secret-vol
+          mountPath: /etc/mongo-credentials
+      volumes:                # mengatur volume penyimpanan data yang digunakan
+      - name: mongo-persist-vol
+        persistentVolumeClaim:
+          claimName: karsajobs-db-pvc # dari nama objek PersistentVolumeClaim yang dibuat
+      - name: mongo-config-vol
+        configMap:
+          name: karsajobs-db-config  # dari nama objek ConfigMap yang dibuat
+          items: 
+          - key: mongo.conf
+            path: mongo.conf
+      - name: mongo-secret-vol
+        secret:
+          secretName: karsajobs-db-secret # dari nama objek Secret yang dibuat
